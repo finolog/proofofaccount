@@ -145,7 +145,7 @@ contract ProofOfAccount {
         uint oracleAmount = totalAmount - ethereumFundationAmount;
         
         msg.sender.transfer(oracleAmount);
-        msg.sender.transfer(ethereumFundationAmount);
+        EthereumFundation.transfer(ethereumFundationAmount);
         
         oracles[msg.sender].confirmed++;
     }
