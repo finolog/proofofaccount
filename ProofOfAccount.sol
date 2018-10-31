@@ -194,7 +194,7 @@ contract ProofOfAccount {
     
     
     function confirmed(string _account, address _address, address _oracle) public constant returns (bool) {
-        if (requests[_oracle][_address][_account].requestedAt > 0 && requests[msg.sender][_address][_account].confirmedAt > 0) {
+        if (requests[_oracle][_address][_account].requestedAt > 0 && requests[_oracle][_address][_account].confirmedAt > 0) {
             return true;
         } else {
             return false;
