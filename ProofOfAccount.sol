@@ -51,7 +51,10 @@ contract ProofOfAccount {
     }
     
     
-    address EthereumFundation = 0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359;
+    // https://www.ethereum.org/donate
+    address EthereumFoundation = 0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359;
+    uint ethereumFoundationContribution = 0;
+    uint currentEthereumFoundationContribution = 0;
     
     mapping(address => Oracle) oracles;
     mapping(address => mapping(address => mapping(string => Request))) requests;
@@ -142,6 +145,16 @@ contract ProofOfAccount {
         
         oracles[msg.sender].fee = _fee;
     }
+    
+    
+    function getEthereumFoundationContribution() public constant returns (uint) {
+        return ethereumFoundationContribution;
+    }
+    
+    
+    function getCurrentEthereumFoundationContribution() public constant returns (uint) {
+        return currentEthereumFoundationContribution;
+    }
 
 
     function request(string _account, address _oracle) public payable {
@@ -168,12 +181,14 @@ contract ProofOfAccount {
         requests[msg.sender][_address][_account].pendingFee = 0;
         requests[msg.sender][_address][_account].confirmedAt = now;
 
-        uint ethereumFundationAmount = totalAmount / 10;
-        uint oracleAmount = totalAmount - ethereumFundationAmount;
+        uint ethereumFoundationAmount = totalAmount / 10;
+        uint oracleAmount = totalAmount - ethereumFoundationAmount;
         
         msg.sender.transfer(oracleAmount);
-        EthereumFundation.transfer(ethereumFundationAmount);
-        
+
+        ethereumFoundationContribution = ethereumFoundationContribution + ethereumFoundationAmount;
+        currentEthereumFoundationContribution = currentEthereumFoundationContribution + ethereumFoundationAmount;
+
         oracles[msg.sender].confirmed++;
     }
     
@@ -198,6 +213,13 @@ contract ProofOfAccount {
         requests[_oracle][msg.sender][_account].confirmedAt = 0;
         
         msg.sender.transfer(amount);
-    }    
+    }
+    
+    
+    function donate() public onlyOracle {
+        uint value = currentEthereumFoundationContribution;
+        currentEthereumFoundationContribution = 0;
+        EthereumFoundation.transfer(value);
+    }
 
 }
