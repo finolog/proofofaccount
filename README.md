@@ -10,7 +10,7 @@ The Creator of the contract becomes the first Oracle and can invite other oracle
 
 ## Contract address
 
-`0xce22580a9d58acbf1af804f4931244800dc814b1`
+`0xd9dade06a37bbfc765a194d0d1a081e3f1980812`
 
 ## User usage
 
