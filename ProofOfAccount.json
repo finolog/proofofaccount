@@ -19,6 +19,15 @@
 	},
 	{
 		"constant": false,
+		"inputs": [],
+		"name": "donate",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
 		"inputs": [
 			{
 				"name": "_oracle",
@@ -190,6 +199,34 @@
 		"constant": true,
 		"inputs": [],
 		"name": "getAvailableOracleAddressesCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCurrentEthereumFoundationContribution",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getEthereumFoundationContribution",
 		"outputs": [
 			{
 				"name": "",
