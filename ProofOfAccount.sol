@@ -165,10 +165,8 @@ contract ProofOfAccount {
     }
     
     
-    function requested(string _account, address _oracle) public constant returns (bool) {
-        require(oracles[_oracle].inviter > 0);
-        
-        return requests[_oracle][msg.sender][_account].requestedAt > 0;
+    function requested(string _account, address _address) public constant onlyOracle returns (bool) {
+        return requests[msg.sender][_address][_account].requestedAt > 0;
     }
 
 
@@ -199,6 +197,16 @@ contract ProofOfAccount {
         } else {
             return false;
         }
+    }
+    
+    
+    function remove(string _account, address _oracle) public {
+        delete requests[_oracle][msg.sender][_account];
+    }
+    
+    
+    function revoke(string _account, address _address) public onlyOracle {
+        delete requests[msg.sender][_address][_account];
     }
 
 
