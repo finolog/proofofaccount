@@ -10,12 +10,13 @@ The Creator of the contract becomes the first Oracle and can invite other oracle
 
 ## Contract address
 
-`0xd9dade06a37bbfc765a194d0d1a081e3f1980812`
+`0x52321c1dc4cd5963040d12ee72ebee5efc3f8a32`
 
 ## User usage
 
 - `request(string account, address oracle)` request a confirmation `account` => `address` via `oracle`
 - `confirmed(string account, address address, address oracle)` check a confirmation
+- `remove(string account, address oracle)` remove request or confirmation
 - `withdraw(string account, address oracle)` withdraw fee from unconfirmed request `account` via `oracle`
 
 - `getOracleName(address oracle)` return `oracle` name
@@ -27,6 +28,7 @@ The Creator of the contract becomes the first Oracle and can invite other oracle
 
 - `requested(string account, address address)` check request for a confirmation `account` => `address`
 - `confirm(string account, address address)` confirm an `account`
+- `revoke(string account, address address)` revoke confirmation
 - `invite(address oracle, string name, string url, uint fee)` invite a new oracle
 
 - `setOracleName(string name)`
